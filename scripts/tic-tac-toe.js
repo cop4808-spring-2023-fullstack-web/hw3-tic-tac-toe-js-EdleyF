@@ -1,20 +1,7 @@
 const statusDisplay = document.querySelector('.status');
 
-// Variables for scoring board and tracking
-let scorePlayer = document.querySelector('#scorePlayer')
-let ties = document.querySelector('#ties')
-let scoreComputer = document.querySelector('#scoreComputer')
-
-let pScore = 0
-let draws = 0
-let cScore = 0
-
 let gameActive = true;
-
-// PLayer and Computer Marker
-let player = "X";
-let computer = "O"
-
+let currentPlayer = "X";
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
 const winningMessage = () => `Player ${currentPlayer} has won!`;
