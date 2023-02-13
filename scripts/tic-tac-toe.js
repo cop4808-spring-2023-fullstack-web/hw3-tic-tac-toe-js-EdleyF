@@ -55,7 +55,7 @@ function checkWin() {
         statusDisplay.innerHTML = winningMessage();
         gameActive = false;
         statusDisplay.style.color = "rgb(251,100,204)";
-        return;
+        return roundWon;
     }
 
     let roundDraw = !gameState.includes("");
@@ -63,7 +63,7 @@ function checkWin() {
         statusDisplay.innerHTML = drawMessage();
         gameActive = false;
         statusDisplay.style.color = "rgb(251,100,204)";
-        return;
+        return roundDraw;
     }
 }
 
@@ -110,15 +110,15 @@ function handleResultValidation() {
 
     if (gameActive) {
         handlePlayerChange()
-        handleComputerMove()
+        setTimeout(() => {handleComputerMove()}, 1000)
     }
 
 }
 
 function handleComputerMove() {
     pickMove()
-    checkWin()
-    handlePlayerChange()
+    if (!checkWin())
+        handlePlayerChange()
 }
 
 function pickMove() {
