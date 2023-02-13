@@ -8,9 +8,17 @@ let scoreP = 0;
 let draws = 0;
 let scoreC = 0;
 let gameActive = true;
-let ello = Math.random()
+
+console.log("Fresh game")
+
+var ello = Math.random()
 console.log(ello)
 let currentPlayer = ello < 0.5 ? "X" : "O"
+if (currentPlayer === "X"){
+    console.log("Players turn")
+}else{
+    console.log("Computers turn")
+}
 
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
@@ -152,12 +160,24 @@ if (ello > .5){
 
 function handleRestartGame() {
     gameActive = true;
-    currentPlayer = "X";
     gameState = ["", "", "", "", "", "", "", "", ""];
     statusDisplay.style.color = "rgb(65, 65, 65)";
     statusDisplay.innerHTML = currentPlayerTurn();
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
     document.querySelectorAll('.cell').forEach(cell => cell.style.backgroundColor = "white")
+    console.log("Game restarted")
+    ello = Math.random()
+    console.log(ello)
+    currentPlayer = ello < 0.5 ? "X" : "O"
+    if (currentPlayer === "X"){
+        console.log("Players turn")
+    }else{
+        console.log("Computers turn")
+    }
+    if (ello > .5){
+        statusDisplay.innerHTML = currentPlayerTurn();
+        setTimeout(() => {handleComputerMove()}, 1000)
+    }
 }
 
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
