@@ -21,6 +21,7 @@ const winningConditions = [
     [2, 4, 6]
 ];
 
+
 function handleCellPlayed(clickedCell, clickedCellIndex) {
     gameState[clickedCellIndex] = currentPlayer;
     clickedCell.innerHTML = currentPlayer;
@@ -31,7 +32,7 @@ function handlePlayerChange() {
     statusDisplay.innerHTML = currentPlayerTurn();
 }
 
-function handleResultValidation() {
+function checkWin() {
     let roundWon = false;
     for (let i = 0; i <= 7; i++) {
         const winCondition = winningConditions[i];
@@ -42,6 +43,45 @@ function handleResultValidation() {
             continue;
         }
         if (a === b && b === c) {
+            document.getElementById(winCondition[0]).style.backgroundColor = "yellow";
+            document.getElementById(winCondition[1]).style.backgroundColor = "yellow";
+            document.getElementById(winCondition[2]).style.backgroundColor = "yellow";
+            roundWon = true;
+            break
+        }
+    }
+
+    if (roundWon) {
+        statusDisplay.innerHTML = winningMessage();
+        gameActive = false;
+        statusDisplay.style.color = "rgb(251,100,204)";
+        return;
+    }
+
+    let roundDraw = !gameState.includes("");
+    if (roundDraw) {
+        statusDisplay.innerHTML = drawMessage();
+        gameActive = false;
+        statusDisplay.style.color = "rgb(251,100,204)";
+        return;
+    }
+}
+
+function handleResultValidation() {
+    /*
+    let roundWon = false;
+    for (let i = 0; i <= 7; i++) {
+        const winCondition = winningConditions[i];
+        let a = gameState[winCondition[0]];
+        let b = gameState[winCondition[1]];
+        let c = gameState[winCondition[2]];
+        if (a === '' || b === '' || c === '') {
+            continue;
+        }
+        if (a === b && b === c) {
+            document.getElementById(winCondition[0]).style.backgroundColor = "yellow";
+            document.getElementById(winCondition[1]).style.backgroundColor = "yellow";
+            document.getElementById(winCondition[2]).style.backgroundColor = "yellow";
             roundWon = true;
             break
         }
@@ -63,6 +103,37 @@ function handleResultValidation() {
     }
 
     handlePlayerChange();
+
+    handleComputerMove() */
+
+    checkWin()
+
+    if (gameActive) {
+        handlePlayerChange()
+        handleComputerMove()
+    }
+
+}
+
+function handleComputerMove() {
+    pickMove()
+    checkWin()
+    handlePlayerChange()
+}
+
+function pickMove() {
+
+    while (true) {
+        var m = Math.floor(Math.random()*9)
+
+        if (gameState[m] == '')
+            break
+    }
+
+    gameState[m] = currentPlayer
+
+    document.getElementById(m).innerHTML = currentPlayer
+
 }
 
 function handleCellClick(clickedCellEvent) {
@@ -84,6 +155,7 @@ function handleRestartGame() {
     statusDisplay.style.color = "rgb(65, 65, 65)";
     statusDisplay.innerHTML = currentPlayerTurn();
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
+    document.querySelectorAll('.cell').forEach(cell => cell.style.backgroundColor = "white")
 }
 
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
