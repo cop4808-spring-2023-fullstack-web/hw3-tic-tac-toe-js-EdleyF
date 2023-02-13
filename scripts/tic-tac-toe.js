@@ -1,13 +1,12 @@
 const statusDisplay = document.querySelector('.status');
 
-let scorePlayer = document.querySelector('.scorePlayer')
-let ties = document.querySelector('.ties')
-let scoreComputer = document.querySelector('.scoreComputer')
+let scorePlayer = document.querySelector('#scorePlayer')
+let ties = document.querySelector('#ties')
+let scoreComputer = document.querySelector('#scoreComputer')
 
 let scoreP = 0;
 let draws = 0;
 let scoreC = 0;
-
 let gameActive = true;
 let currentPlayer = "X";
 let gameState = ["", "", "", "", "", "", "", "", ""];
@@ -63,7 +62,16 @@ function checkWin() {
         statusDisplay.innerHTML = winningMessage();
         gameActive = false;
         statusDisplay.style.color = "rgb(251,100,204)";
-        return roundWon;
+        console.log(currentPlayer)
+        if(currentPlayer === "X"){
+            scoreP++;
+            scorePlayer.innerHTML = `Player: ${scoreP}`
+        }else{
+            scoreC++
+            scoreComputer.innerHTML = `Computer: ${scoreC}`
+            console.log(scoreC)
+        }
+        return 1;
     }
 
     let roundDraw = !gameState.includes("");
@@ -71,7 +79,7 @@ function checkWin() {
         statusDisplay.innerHTML = drawMessage();
         gameActive = false;
         statusDisplay.style.color = "rgb(251,100,204)";
-        return roundDraw;
+        return 2;
     }
 }
 
@@ -82,6 +90,16 @@ function handleResultValidation() {
     if (gameActive) {
         handlePlayerChange()
         setTimeout(() => {handleComputerMove()}, 1000)
+    }
+    if(checkWin == 1){
+        if(currentPlayer == "X"){
+            scoreP++;
+            scorePlayer.innerHTML = `Player: ${scoreP}`
+        }else{
+            scoreC++
+            scoreComputer.innerHTML = `Computer: ${scoreC}`
+            console.log(scoreC)
+        }
     }
 
 }
