@@ -8,7 +8,10 @@ let scoreP = 0;
 let draws = 0;
 let scoreC = 0;
 let gameActive = true;
-let currentPlayer = "X";
+let ello = Math.random()
+console.log(ello)
+let currentPlayer = ello < 0.5 ? "X" : "O"
+
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
 const winningMessage = () => `Player ${currentPlayer} has won!`;
@@ -140,6 +143,11 @@ function handleCellClick(clickedCellEvent) {
 
     handleCellPlayed(clickedCell, clickedCellIndex);
     handleResultValidation();
+}
+
+if (ello > .5){
+    statusDisplay.innerHTML = currentPlayerTurn();
+    setTimeout(() => {handleComputerMove()}, 1000)
 }
 
 function handleRestartGame() {
