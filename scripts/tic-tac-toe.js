@@ -77,6 +77,8 @@ function checkWin() {
     let roundDraw = !gameState.includes("");
     if (roundDraw) {
         statusDisplay.innerHTML = drawMessage();
+        draws++
+        ties.innerHTML = `Ties: ${draws}`
         gameActive = false;
         statusDisplay.style.color = "rgb(251,100,204)";
         return 2;
@@ -100,6 +102,9 @@ function handleResultValidation() {
             scoreComputer.innerHTML = `Computer: ${scoreC}`
             console.log(scoreC)
         }
+    }else if (checkWin == 2){
+        draws++
+        ties.innerHTML = `Ties: ${draws}`
     }
 
 }
