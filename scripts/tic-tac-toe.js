@@ -46,7 +46,9 @@ function handleCellPlayed(clickedCell, clickedCellIndex) {
 }
 
 function handlePlayerChange() {
+    console.log("Switching current player")
     currentPlayer = currentPlayer === "X" ? "O" : "X";
+    console.log("Current player is: " + currentPlayer)
     statusDisplay.innerHTML = currentPlayerTurn();
 }
 
@@ -73,7 +75,7 @@ function checkWin() {
         statusDisplay.innerHTML = winningMessage();
         gameActive = false;
         statusDisplay.style.color = "rgb(251,100,204)";
-        console.log(currentPlayer)
+        console.log(currentPlayer + " Has won the game")
         if(currentPlayer === "X"){
             scoreP++;
             scorePlayer.innerHTML = `Player: ${scoreP}`
@@ -87,6 +89,7 @@ function checkWin() {
 
     let roundDraw = !gameState.includes("");
     if (roundDraw) {
+        console.log("Game has ended in a draw")
         statusDisplay.innerHTML = drawMessage();
         draws++
         ties.innerHTML = `Ties: ${draws}`
@@ -102,6 +105,7 @@ function handleResultValidation() {
 
     if (gameActive) {
         handlePlayerChange()
+        statusDisplay.innerHTML = `Computer is thinking`
         setTimeout(() => {handleComputerMove()}, 1000)
     }
     if(checkWin == 1){
@@ -121,6 +125,7 @@ function handleResultValidation() {
 }
 
 function handleComputerMove() {
+    console.log("Computer is making move")
     pickMove()
     if (!checkWin())
         handlePlayerChange()
@@ -154,7 +159,7 @@ function handleCellClick(clickedCellEvent) {
 }
 
 if (ello > .5){
-    statusDisplay.innerHTML = currentPlayerTurn();
+    statusDisplay.innerHTML = `Computer is thinking`
     setTimeout(() => {handleComputerMove()}, 1000)
 }
 
@@ -175,7 +180,7 @@ function handleRestartGame() {
         console.log("Computers turn")
     }
     if (ello > .5){
-        statusDisplay.innerHTML = currentPlayerTurn();
+        statusDisplay.innerHTML = `Computer is thinking`
         setTimeout(() => {handleComputerMove()}, 1000)
     }
 }
