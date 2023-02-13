@@ -1,5 +1,13 @@
 const statusDisplay = document.querySelector('.status');
 
+let scorePlayer = document.querySelector('.scorePlayer')
+let ties = document.querySelector('.ties')
+let scoreComputer = document.querySelector('.scoreComputer')
+
+let scoreP = 0;
+let draws = 0;
+let scoreC = 0;
+
 let gameActive = true;
 let currentPlayer = "X";
 let gameState = ["", "", "", "", "", "", "", "", ""];
@@ -43,9 +51,9 @@ function checkWin() {
             continue;
         }
         if (a === b && b === c) {
-            document.getElementById(winCondition[0]).style.backgroundColor = "yellow";
-            document.getElementById(winCondition[1]).style.backgroundColor = "yellow";
-            document.getElementById(winCondition[2]).style.backgroundColor = "yellow";
+            document.getElementById(winCondition[0]).style.backgroundColor = "rgb(251,100,204)";
+            document.getElementById(winCondition[1]).style.backgroundColor = "rgb(251,100,204)";
+            document.getElementById(winCondition[2]).style.backgroundColor = "rgb(251,100,204)";
             roundWon = true;
             break
         }
@@ -68,43 +76,6 @@ function checkWin() {
 }
 
 function handleResultValidation() {
-    /*
-    let roundWon = false;
-    for (let i = 0; i <= 7; i++) {
-        const winCondition = winningConditions[i];
-        let a = gameState[winCondition[0]];
-        let b = gameState[winCondition[1]];
-        let c = gameState[winCondition[2]];
-        if (a === '' || b === '' || c === '') {
-            continue;
-        }
-        if (a === b && b === c) {
-            document.getElementById(winCondition[0]).style.backgroundColor = "yellow";
-            document.getElementById(winCondition[1]).style.backgroundColor = "yellow";
-            document.getElementById(winCondition[2]).style.backgroundColor = "yellow";
-            roundWon = true;
-            break
-        }
-    }
-
-    if (roundWon) {
-        statusDisplay.innerHTML = winningMessage();
-        gameActive = false;
-        statusDisplay.style.color = "rgb(251,100,204)";
-        return;
-    }
-
-    let roundDraw = !gameState.includes("");
-    if (roundDraw) {
-        statusDisplay.innerHTML = drawMessage();
-        gameActive = false;
-        statusDisplay.style.color = "rgb(251,100,204)";
-        return;
-    }
-
-    handlePlayerChange();
-
-    handleComputerMove() */
 
     checkWin()
 
