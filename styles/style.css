@@ -14,11 +14,11 @@ body {
 body {
     color: rgb(65, 65, 65);
     background-color: rgb(255, 255, 255);
-    font-family: Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
     place-items: center;
     user-select: none;
+    background-image: url("greentiles.jpg");
 }
 
 .header {
@@ -79,7 +79,7 @@ a:visited {
     padding: 0.8rem;
     border: 0;
     border-radius: 40px;
-    width: 8rem;
+    width: 10rem;
     cursor: pointer;
     position: relative;
 }
@@ -95,7 +95,7 @@ a:visited {
 /******         Footer           *****/
 /*************************************/
 footer {
-    position: relative;
+    position: absolute;
     bottom: 0;
     left: 0;
 }
